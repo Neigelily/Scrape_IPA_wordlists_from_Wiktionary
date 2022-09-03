@@ -18,7 +18,7 @@ def scrapeFromWiktionaryIPAwords(language):
 	baseLink = "https://en.wiktionary.org"
 	language = language.replace(" ", "_")
 	currentLink = baseLink+"/wiki/Category:"+language+"_terms_with_IPA_pronunciation"
-	driver = webdriver.Chrome("/Users/neigerochant/ownCloud/Outils/Python_scripts/chromedriver", options = options)
+	driver = webdriver.Chrome(<Path to driver>, options = options)
 	driver.get(currentLink)
 	
 	html_source = driver.page_source
