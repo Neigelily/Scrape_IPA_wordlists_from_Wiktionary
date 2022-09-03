@@ -16,8 +16,9 @@ options.add_argument("--headless")
 
 def scrapeFromWiktionaryIPAwords(language):
 	baseLink = "https://en.wiktionary.org"
+	language = language.replace(" ", "_")
 	currentLink = baseLink+"/wiki/Category:"+language+"_terms_with_IPA_pronunciation"
-	driver = webdriver.Chrome(<path of the file "chromedriver" on your computer>, options = options)
+	driver = webdriver.Chrome("/Users/neigerochant/ownCloud/Outils/Python_scripts/chromedriver", options = options)
 	driver.get(currentLink)
 	
 	html_source = driver.page_source
@@ -46,27 +47,35 @@ def scrapeFromWiktionaryIPAwords(language):
 			html_source_word = driver.page_source
 			soupWord = BeautifulSoup(html_source_word, 'html.parser')
 			h2liste = soupWord.find_all("h2")
+			isFound = False
 			for h2 in h2liste:
 				if h2.find_all("span", id=language) != []:
-					for par in h2.find_next_siblings():
-						listOfSpansIPA = par.find_all("span", class_="IPA")
-						if listOfSpansIPA != []:
-							for spanIPA in listOfSpansIPA:
-								parent = spanIPA.parent
-								iSpanDialect = spanIPA.find_previous_sibling("i")
-								if parent != None:
-									text = parent.text.split(spanIPA.text)
-									potentialDialects = re.findall('\(([^)]+)\)', text[0])
-									dialectLabel = "unspecified"
-									for potentialDialect in potentialDialects:
-										if potentialDialect != "key":
-											dialectLabel = potentialDialect
-								else:
-									dialectLabel = "unspecified"
-								listOfIPAWords.append([spanIPA.text, dialectLabel])
-							break
-								 #("span", class_="IPA").text)
-			print("Page "+str(counterPage)+" : "+str(counter+1)+"/"+str(len(listOfLinksCurrentPage)))
+					isAfterPronunciation = False
+					for siblingH2 in h2.find_next_siblings():
+						if isAfterPronunciation == True:
+							listOfSpansIPA = siblingH2.find_all("span", class_="IPA")
+							if listOfSpansIPA != []:
+								for spanIPA in listOfSpansIPA:
+									parent = spanIPA.parent
+									if parent != None:
+										text = parent.text.split(spanIPA.text)
+										potentialDialects = re.findall('\(([^)]+)\)', text[0])
+										dialectLabel = "unspecified"
+										for potentialDialect in potentialDialects:
+											if potentialDialect != "key":
+												dialectLabel = potentialDialect
+									else:
+										dialectLabel = "unspecified"
+									listOfIPAWords.append([spanIPA.text, dialectLabel])
+								isFound = True
+								break
+						else:
+							PronunciationTags = siblingH2.find_all(lambda tag: "Pronunciation" in tag.text)
+							if PronunciationTags != []:
+								isAfterPronunciation = True
+			if isFound == True:		
+				print("Page "+str(counterPage)+" : "+str(counter+1)+"/"+str(len(listOfLinksCurrentPage)))
+			else: print("No IPA found at link n°"+str(counter+1)+" on page "+str(counterPage)+" ("+currentLink+")")
 		nextPageLinks = soup.find_all(lambda tag: tag.name == "a" and "next page" in tag.text)
 		if nextPageLinks != []:
 			currentLink = baseLink+nextPageLinks[0]["href"]
@@ -79,16 +88,10 @@ def scrapeFromWiktionaryIPAwords(language):
 	fields=['Word', 'Dialect']
 	with open(language+'.csv', 'w', encoding='utf-8') as f:
 	      
-	    # using csv.writer method from CSV package
 	    write = csv.writer(f)
 	      
 	    write.writerow(fields)
 	    write.writerows(listOfIPAWords)
 	
-	#<span class="IPA">/attiβiˈtat/</span>
-	
-	#<h2><span class="mw-headline" id="Occitan">Occitan</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=a&amp;action=edit&amp;section=683" title="Edit section: Occitan">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-	
-	#<span class="IPA" lang="">/a/</span>
-		#find_next_sibling()
+
 
