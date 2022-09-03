@@ -16,6 +16,8 @@ The output is produced by executing one function: scrapeFromWiktionaryIPAwords(l
 # Other info
 The execution of the script takes approximately 01:05 minute per 200 entries (=1 Wiktionary page) on my laptop. For scraping the French IPA wiktionary (79,825 entries), it would hence take approximately 07:15 hours to run.
 
-DISCLAIMER: The HTML structure of Wiktionary varies slitghtly from language to language. This script is intended to be quite robust, but I cannot guarantee that it works perfectly for all languages of Wiktionary.
+## Disclaimer:
+
+The HTML structure of Wiktionary varies slitghtly from language to language. This script is intended to be quite robust, but I cannot guarantee that it works perfectly for all languages of Wiktionary.
 
 
