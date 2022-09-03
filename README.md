@@ -9,7 +9,7 @@ Executing this function requires:
 - To replace <Path to driver> in the code by the path to the place you chose for the driver on your computer
 - an Internet connection
 - to use the same language name as Wiktionary (e.g. "Occitan", "Haitian Creole")
-- if you don't use Chrome, to adapt the code to the browser you use
+- if you don't use Chrome, to adapt the code to the browser you use (it should be easy)
 
 The execution of the script takes approximately 01:05 minute per 200 entries (=1 Wiktionary page) on my laptop. For scraping the French IPA wiktionary (79825 entries), it would hence take approximately 07:15 hours to run.
 
