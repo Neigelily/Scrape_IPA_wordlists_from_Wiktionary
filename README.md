@@ -1,6 +1,6 @@
 # Scrape-IPA-wordlists-from-Wiktionary
 
-This code scrapes Wiktionary (https://en.wiktionary.org/w/index.php?title=Category:Terms_with_IPA_pronunciation_by_language&from=F) to produce IPA wordlists composed all the words of a given language for which an IPA transcription is provided in Wiktionary. The output is a csv file containing the IPA transcription and dialect tag (if specified by Wiktionary) of each word, but no translation. An example of output file is provided in this repository.
+This code scrapes Wiktionary (https://en.wiktionary.org/w/index.php?title=Category:Terms_with_IPA_pronunciation_by_language&from=F) to produce IPA wordlists composed all the words of a given language for which an IPA transcription is provided in Wiktionary. The output is a csv file containing the IPA transcription and dialect tag (if specified by Wiktionary) of each word, but no translation. Square brackets or slashes delimiting IPA transcriptions are preserved from the Wiktionary data. An example of output file is provided in this repository.
 
 The output is produced by executing one function: scrapeFromWiktionaryIPAwords(language), which takes the language of interest as its unique argument.
 
@@ -10,6 +10,8 @@ Executing this function requires:
 - an Internet connection
 - to use the same language name as Wiktionary (e.g. "Occitan", "Haitian Creole")
 - if you don't use Chrome, to adapt the code to the browser you use (it should be easy)
+  
+
 
 The execution of the script takes approximately 01:05 minute per 200 entries (=1 Wiktionary page) on my laptop. For scraping the French IPA wiktionary (79,825 entries), it would hence take approximately 07:15 hours to run.
 
