@@ -6,7 +6,7 @@ The output is produced by executing one function: scrapeFromWiktionaryIPAwords(l
 
 Executing this function requires:
 - to install Selenium and a driver to interface with the chosen browser (instructions here: https://selenium-python.readthedocs.io/installation.html)
-- To replace "<Path to driver>" in the code by the path to the place you chose for the driver on your computer
+- To replace \<Path to driver\> in the code by the path to the place you chose for the driver on your computer
 - an Internet connection
 - to use the same language name as Wiktionary (e.g. "Occitan", "Haitian Creole")
 - if you don't use Chrome, to adapt the code to the browser you use (it should be easy)
