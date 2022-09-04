@@ -4,7 +4,7 @@ This script scrapes Wiktionary (https://en.wiktionary.org/w/index.php?title=Cate
 
 The output is produced by executing one function: scrapeFromWiktionaryIPAwords(language, removeComplexWords = False), which takes the language of interest as its first argument, and an optional second argument which is the Boolean "removeComplexWords").
 
-If "removeComplexWords" is set to True, the program ignores entries of Wiktionary containing one or more spaces.
+If "removeComplexWords" is set to True, the program ignores the entries of Wiktionary that contain one or more spaces.
 
 # Requirements
 
