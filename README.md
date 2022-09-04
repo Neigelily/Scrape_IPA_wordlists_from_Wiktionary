@@ -1,8 +1,10 @@
 # Description
 
-This script scrapes Wiktionary (https://en.wiktionary.org/w/index.php?title=Category:Terms_with_IPA_pronunciation_by_language&from=F) to produce IPA wordlists composed all the words of a given language for which an IPA transcription is provided in Wiktionary. The output is a csv file containing the IPA transcription and dialect tag (if specified by Wiktionary) of each word, but no translation. Square brackets or slashes delimiting IPA transcriptions are preserved from the Wiktionary data. An example of output file is provided in this repository.
+This script scrapes Wiktionary (https://en.wiktionary.org/w/index.php?title=Category:Terms_with_IPA_pronunciation_by_language&from=F) to produce IPA wordlists composed all the words of a given language for which an IPA transcription is provided in Wiktionary. The output is a csv file containing the IPA transcription, dialect tag (if specified by Wiktionary), part of speech tag and translation of each word. Square brackets or slashes delimiting IPA transcriptions are preserved from the Wiktionary data. An example of output file is provided in this repository.
 
-The output is produced by executing one function: scrapeFromWiktionaryIPAwords(language), which takes the language of interest as its unique argument.
+The output is produced by executing one function: scrapeFromWiktionaryIPAwords(language, removeComplexWords = False), which takes the language of interest as its first argument, and an optional second argument which is the Boolean "removeComplexWords").
+
+If "removeComplexWords" is set to True, the program ignores entries of Wiktionary containing one or more spaces.
 
 # Requirements
 
